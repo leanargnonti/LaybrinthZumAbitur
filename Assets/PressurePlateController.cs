@@ -9,6 +9,7 @@ public class PressurePlateController : MonoBehaviour
     // Use this for initialization
     private bool isDoorUp = false;
     public GameObject door;
+    public Material inactiveMaterial;
     public GameObject questionCanvas;
     public string question = "";
     public List<string> solutions;
@@ -36,7 +37,8 @@ public class PressurePlateController : MonoBehaviour
     {
         if (!isDoorUp)
         {
-            Debug.Log("entered");
+            Renderer rend = GetComponent<Renderer>();
+            rend.material = inactiveMaterial;
             door.GetComponent<GlideController>().SetDestination(new Vector3(door.transform.position.x, door.transform.position.y - 5f, door.transform.position.z));
             isDoorUp = true;
         }
