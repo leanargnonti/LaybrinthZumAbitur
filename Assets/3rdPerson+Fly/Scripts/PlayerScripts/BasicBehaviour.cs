@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+//Quelle: https://www.gamasutra.com/blogs/ViniciusMarques/20171128/310466/Getting_started_with_your_Third_Person_Game.php
+
 // This class manages which player behaviour is active or overriding, and call its local functions.
 // Contains basic setup and common functions used by all the player behaviours.
 public class BasicBehaviour : MonoBehaviour
