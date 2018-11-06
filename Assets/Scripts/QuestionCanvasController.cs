@@ -12,6 +12,7 @@ public class QuestionCanvasController : MonoBehaviour
     public Text QuestionText;
     public Text solutionText;
     public InputField solutionField;
+    public InputField InputField;
 
 
     void Start()
@@ -57,6 +58,17 @@ public class QuestionCanvasController : MonoBehaviour
             return;
         }
         solutionText.text = "";
+    }
+
+    
+
+    void OnGUI()
+    {
+        if (solutionField.isFocused && solutionField.text != "" && Input.GetKey(KeyCode.Return))
+        {
+            checkSolution_Click();
+            solutionField.text = "";
+        }
     }
 
 }

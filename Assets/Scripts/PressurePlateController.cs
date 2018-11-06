@@ -9,10 +9,12 @@ public class PressurePlateController : MonoBehaviour
     // Use this for initialization
     private bool isDoorUp = false;
     public GameObject door;
+    private GameObject player;
     public Material inactiveMaterial;
     public GameObject questionCanvas;
     public string question = "";
-    public List<string> solutions;
+    //public string[] answers;
+    public List<string> answers;
 
     void Start()
     {
@@ -28,8 +30,10 @@ public class PressurePlateController : MonoBehaviour
     {
         if (!isDoorUp)
         {
-            solutions.Add("cheat");
-            questionCanvas.GetComponent<QuestionCanvasController>().makeVisible(this.gameObject, question, solutions);
+            //solutions.Add("cheat");
+            player = other.gameObject;
+            questionCanvas.GetComponent<QuestionCanvasController>().makeVisible(this.gameObject, question, answers);
+            //TODO: other.GetComponent<BasicBehaviour>().setPlayerEnabled(false);
         }
     }
 
@@ -40,6 +44,7 @@ public class PressurePlateController : MonoBehaviour
             Renderer rend = GetComponent<Renderer>();
             rend.material = inactiveMaterial;
             door.GetComponent<GlideController>().SetDestination(new Vector3(door.transform.position.x, door.transform.position.y - 5f, door.transform.position.z));
+            //TODO: player.GetComponent<BasicBehaviour>().setPlayerEnabled(true);
             isDoorUp = true;
         }
     }
