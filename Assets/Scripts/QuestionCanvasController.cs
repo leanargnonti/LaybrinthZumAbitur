@@ -41,6 +41,14 @@ public class QuestionCanvasController : MonoBehaviour
         }
     }
 
+    public void cancelSolution_Click()
+    {
+        setFalseSolution(false);
+        this.gameObject.SetActive(false);
+        solutionField.text = "";
+        sender.GetComponent<PressurePlateController>().recieveSolution(false);
+    }
+
     public void makeVisible(GameObject sender, string question, List<string> solutions)
     {
         this.gameObject.SetActive(true);

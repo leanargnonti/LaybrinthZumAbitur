@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 //Quelle: https://www.gamasutra.com/blogs/ViniciusMarques/20171128/310466/Getting_started_with_your_Third_Person_Game.php
 
@@ -11,10 +12,12 @@ public class BasicBehaviour : MonoBehaviour
 	public float turnSmoothing = 0.06f;                   // Speed of turn when moving to match camera facing.
 	public float sprintFOV = 100f;                        // the FOV to use on the camera when player is sprinting.
 	public string sprintButton = "Sprint";                // Default sprint button input name.
+    public bool isControlEnabled = true;                  // 
 
 	private float h;                                      // Horizontal Axis.
 	private float v;                                      // Vertical Axis.
-	private int currentBehaviour;                         // Reference to the current player behaviour.
+
+    private int currentBehaviour;                         // Reference to the current player behaviour.
 	private int defaultBehaviour;                         // The default behaviour of the player when any other is not active.
 	private int behaviourLocked;                          // Reference to temporary locked behaviour that forbids override.
 	private Vector3 lastDirection;                        // Last direction the player was moving.
@@ -64,9 +67,18 @@ public class BasicBehaviour : MonoBehaviour
 
 	void Update()
 	{
-		// Store the input axes.
-		h = Input.GetAxis("Horizontal");
-		v = Input.GetAxis("Vertical");
+        if (isControlEnabled)
+        {
+            // Store the input axes.
+            h = Input.GetAxis("Horizontal");
+            v = Input.GetAxis("Vertical");
+        }
+        else
+        {
+            // Store the input axes.
+            h = 0;
+            v = 0;
+        }
 
 		// Set the input axes on the Animator Controller.
 		anim.SetFloat(hFloat, h, 0.1f, Time.deltaTime);
@@ -326,6 +338,12 @@ public class BasicBehaviour : MonoBehaviour
 		Ray ray = new Ray(this.transform.position + Vector3.up * 2 * colExtents.x, Vector3.down);
 		return Physics.SphereCast(ray, colExtents.x, colExtents.x + 0.2f);
 	}
+
+    internal void setPlayerEnabled(bool enabled)
+    {
+        playerCamera.gameObject.GetComponent<ThirdPersonOrbitCamBasic>().isEnabled = enabled;
+        isControlEnabled = enabled;
+    }
 }
 
 // This is the base class for all player behaviours, any custom behaviour must inherit from this.
