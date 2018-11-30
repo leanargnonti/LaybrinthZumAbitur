@@ -13,7 +13,6 @@ public class PressurePlateController : MonoBehaviour
     public Material inactiveMaterial;
     public GameObject questionCanvas;
     public string question = "";
-    //public string[] answers;
     public List<string> answers;
 
     void Start()
@@ -30,7 +29,6 @@ public class PressurePlateController : MonoBehaviour
     {
         if (!isDoorUp)
         {
-            //solutions.Add("cheat");
             player = other.gameObject;
             questionCanvas.GetComponent<QuestionCanvasController>().makeVisible(this.gameObject, question, answers);
             other.GetComponent<BasicBehaviour>().setPlayerEnabled(false);

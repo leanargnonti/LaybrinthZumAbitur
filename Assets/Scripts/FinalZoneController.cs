@@ -23,7 +23,10 @@ public class FinalZoneController : MonoBehaviour {
     {
         youWinCanvas.SetActive(true);
         MainCanvas.GetComponent<MainCanvasController>().stopTimer();
-        winText.text = "Herzlichen Glückwunsch!\nDu hast dein Abitur in " + MainCanvas.GetComponent<MainCanvasController>().getTime() + " Minuten\n\n" +(MainCanvas.GetComponent<MainCanvasController>().star_image.activeSelf ? ("mit Auszeichnungen\n und einem Schnitt von 1,0\n") :"")  + " erhalten!!!";
+        winText.text = "Herzlichen Glückwunsch!\nDu hast dein Abitur in " 
+            + MainCanvas.GetComponent<MainCanvasController>().getTime() + " Minuten\n\n" 
+            + (MainCanvas.GetComponent<MainCanvasController>().star_image.activeSelf ? ("mit Auszeichnungen\n und einem Schnitt von 1,0\n") :"")  
+            + " erhalten!!!";
     }
 
     public void closeGame()
