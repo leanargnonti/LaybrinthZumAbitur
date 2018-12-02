@@ -57,6 +57,6 @@ public class MainCanvasController : MonoBehaviour {
 
     public string getTime()
     {
-        return "" + ((elapsedSeconds / 60 < 10) ? ("0" + elapsedSeconds / 60) : "") + ":" + ((elapsedSeconds % 60 < 10) ? ("0" + elapsedSeconds % 60) : "" + (elapsedSeconds % 60));
+        return "" + ((elapsedSeconds / 60 < 10) ? ("0" + elapsedSeconds / 60) : ("" + elapsedSeconds / 60))  + ":" + ((elapsedSeconds % 60 < 10) ? ("0" + elapsedSeconds % 60) : "" + (elapsedSeconds % 60));
     }
 }
